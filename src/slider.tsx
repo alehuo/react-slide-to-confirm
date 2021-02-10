@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { range } from "lodash-es";
+import React, { useCallback, useState } from 'react';
+import { range } from 'lodash-es';
 
 type SliderFn = (x: number) => number;
 
@@ -40,7 +40,7 @@ export const Slider: React.FC<SliderProps> = ({
       if (!confirmed) {
         setMoving(true);
       }
-      debug && console.log("onMouseDown", e.pageX, e.pageY);
+      debug && console.log('onMouseDown', e.pageX, e.pageY);
     },
     [confirmed, debug]
   );
@@ -53,11 +53,11 @@ export const Slider: React.FC<SliderProps> = ({
         setX(0);
         setY(fn ? fn(e.pageX) : 0);
       } else if (e.pageX + d / 2 >= maxX + d) {
-        debug && console.log("Confirmed");
+        debug && console.log('Confirmed');
         setConfirmed(true);
         onConfirm && onConfirm();
       }
-      debug && console.log("onMouseUp", e.pageX, e.pageY);
+      debug && console.log('onMouseUp', e.pageX, e.pageY);
     },
     [confirmed, debug, fn, maxX, onConfirm]
   );
@@ -65,10 +65,10 @@ export const Slider: React.FC<SliderProps> = ({
   const handleMouseMove = useCallback(
     (e) => {
       e.preventDefault();
-      debug && console.log("onMouseMove", e.pageX, e.pageY);
+      debug && console.log('onMouseMove', e.pageX, e.pageY);
       debug &&
         console.log(
-          "Current pos: ",
+          'Current pos: ',
           e.pageX - d / 2,
           fn ? fn(e.pageX - d / 2) : 0
         );
@@ -77,7 +77,7 @@ export const Slider: React.FC<SliderProps> = ({
           setX(e.pageX - d / 2);
           setY(fn ? fn(e.pageX - d / 2) : 0);
         } else if (!confirmed && e.pageX + d / 2 >= maxX + d) {
-          debug && console.log("Confirmed");
+          debug && console.log('Confirmed');
           setConfirmed(true);
           onConfirm && onConfirm();
         }
@@ -94,7 +94,7 @@ export const Slider: React.FC<SliderProps> = ({
         setX(0);
         setY(fn ? fn(e.pageX) : 0);
       }
-      debug && console.log("onMouseLeave", e.pageX, e.pageY);
+      debug && console.log('onMouseLeave', e.pageX, e.pageY);
     },
     [confirmed, debug, fn]
   );
@@ -102,7 +102,7 @@ export const Slider: React.FC<SliderProps> = ({
   return (
     <div
       style={{
-        position: "relative",
+        position: 'relative',
         width: width + d,
         height: maxY < 2 * (d / 2) ? 2 * (d / 2) : maxY,
       }}
@@ -110,7 +110,7 @@ export const Slider: React.FC<SliderProps> = ({
       <svg
         width="100%"
         height="100%"
-        style={{ position: "absolute", top: 0, left: 0 }}
+        style={{ position: 'absolute', top: 0, left: 0 }}
         xmlns="http://www.w3.org/2000/svg"
       >
         {coordinates.map((coord, i) => (
@@ -128,11 +128,11 @@ export const Slider: React.FC<SliderProps> = ({
         style={{
           width: d / 2,
           height: d / 2,
-          position: "absolute",
+          position: 'absolute',
           top: y,
           left: x,
-          backgroundColor: "red",
-          borderRadius: "50%",
+          backgroundColor: 'red',
+          borderRadius: '50%',
         }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
