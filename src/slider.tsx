@@ -21,14 +21,15 @@ export const Slider: React.FC<SliderProps> = ({
   initialX,
   initialY,
   maxX,
+  height,
   onConfirm,
   debug,
 }) => {
   const [x, setX] = useState(initialX || 0);
-  const [y, setY] = useState(initialY || 0);
+  const [y, setY] = useState(fn ? fn(initialY || 0) : initialY || 0);
   const [moving, setMoving] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
-  const d = 150;
+  const d = height || 200;
   const width = maxX ? maxX + d : 200;
   const xValues = range(0, maxX, 0.5);
   const coordinates = xValues.map((x) => [x, fn ? fn(x) : 0], 0.01);

@@ -15,7 +15,7 @@ Primary.args = {
   primary: true,
   label: 'Linear slider',
   initialX: 0,
-  initialY: 0,
+  height: 200,
   fn: linearSlider,
   maxX: 200,
   onConfirm: () => alert('Confirmed!'),
