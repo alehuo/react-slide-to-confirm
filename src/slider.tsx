@@ -32,7 +32,7 @@ export const Slider: React.FC<SliderProps> = ({
   const width = maxX ? maxX + d : 200;
   const xValues = range(0, maxX, 0.5);
   const coordinates = xValues.map((x) => [x, fn ? fn(x) : 0], 0.01);
-  const maxY = Math.max(...coordinates.map((coord) => coord[1]));
+  const maxY = Math.max(...coordinates.map((coord) => Math.abs(coord[1])));
 
   const handleMouseDown = useCallback(
     (e) => {
@@ -104,7 +104,7 @@ export const Slider: React.FC<SliderProps> = ({
       style={{
         position: 'relative',
         width: width + d,
-        height: maxY < 2 * (d / 2) ? 2 * (d / 2) : maxY,
+        height: maxY < 2 * (d / 2) ? 2 * (d / 2) : maxY + d,
       }}
     >
       <svg
